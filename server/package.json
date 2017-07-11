@@ -1,0 +1,27 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "基于Express+React+mongoDB构建的BlogSite，author：yylww && zoro<p>页面地址：<a href='http://zoulei.com.cn/'>http://zoulei.com.cn/</a></p><p>API地址：<a href='http://112.74.40.94:3000'>http://112.74.40.94:3000</a></p><p>API文档地址：<a href='ttp://112.74.40.94:3001'>http://112.74.40.94:3000/api_doc</a></p>",
+  "apidoc": {
+    "title": "Blog-API接口文档",
+    "url": "http://112.74.40.94:3000/"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "supervisor --harmony app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zoro",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "connect-multiparty": "^2.0.0",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "moment": "^2.18.1",
+    "mongoose": "^4.9.3",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-id-autoinc": "^2013.7.14-4"
+  }
+}
