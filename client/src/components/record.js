@@ -11,27 +11,23 @@ import {
     WingBlank,
     InputItem,
     DatePicker,
-    Toast,
+    Toast
 } from 'antd-mobile';
 const Item = List.Item;
-export default class Record extends Component{
-    constructor(props){
+export default class Record extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             record: [],
             search_date: ''
         };
     }
-    componentWillMount(){
+    componentWillMount() {
         this.search('')
     }
-    search(date){
-        post('list', {
-            search_date: date
-        }).then((data) => {
-            this.setState({
-                record: data.data
-            })
+    search(date) {
+        post('list', {search_date: date}).then((data) => {
+            this.setState({record: data.data})
         })
     }
     render(){

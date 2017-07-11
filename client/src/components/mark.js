@@ -20,31 +20,30 @@ import {
 const minDate = moment('1900-12-31 +0800', 'YYYY-MM-DD HH:mm Z').utcOffset(8);
 const Item = List.Item;
 export default class Mark extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             mbg: '',
             is_eat: '',
             remark: '',
             date: '',
-            hidden: false,
+            hidden: false
         }
     }
-    submit(){
+    submit() {
         const {mbg, is_eat, remark, date} = this.state;
-        post('add', {
-            mbg,
-            is_eat,
-            remark,
-            date
-        }).then((data) => {
-            if(data.status == 1){
-                Toast.info('添加成功', 2);
-                this.props.handleTab('record')
-            }else{
-                Toast.info(data.err_info, 2);
-            }
-        })
+        if (mbg == '' || is_eat == '' || date == '') {
+            Toast.info('请填写完整监测信息', 3)
+        } else {
+            post('add', {mbg, is_eat, remark, date}).then((data) => {
+                if (data.status == 1) {
+                    Toast.info('添加成功', 2);
+                    this.props.handleTab('record')
+                } else {
+                    Toast.info(data.err_info, 2);
+                }
+            })
+        }
     }
     render(){
         return (
