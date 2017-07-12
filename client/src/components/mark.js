@@ -38,7 +38,7 @@ export default class Mark extends Component {
             post('add', {mbg, is_eat, remark, date}).then((data) => {
                 if (data.status == 1) {
                     Toast.info('添加成功', 2);
-                    this.props.handleTab('record')
+                    hashHistory.push('/');
                 } else {
                     Toast.info(data.err_info, 2);
                 }

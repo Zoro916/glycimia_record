@@ -35,22 +35,21 @@ export default class Record extends Component {
             <div>
                 <NavBar mode="dark">血糖监测记录</NavBar>
                 <DatePicker
+                extra=""
                 onChange={(v)=>{this.setState({search_date: v.format('YYYY-MM-DD')})}}
                 mode="date"
                 >
-                <div style={{height: '100px'}}>
                     <InputItem
                     value={this.state.search_date}
                     style={{marginRight: '140px'}}
                     editable={false}
                     placeholder="选择日期搜索"
                     />
-                </div>
                 </DatePicker>
                 <Button
                 size="small"
                 type="primary"
-                style={{float: 'right',margin:'-85px 10px 0 0'}}
+                style={{float: 'right',margin:'-70px 10px 0 0'}}
                 onClick={this.search.bind(this, this.state.search_date)}
                 >搜索</Button>
                 <div>
