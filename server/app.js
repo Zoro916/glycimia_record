@@ -23,8 +23,7 @@ app.get('/', function(req, res) {
 })
 app.post('/add', function(req, res) {
     var {date, mbg, is_eat, remark} = req.body;
-    var search_date = moment().format('YYYY-MM-DD');
-    var new_record = new Record({date: date, mbg: mbg, is_eat: is_eat, remark: remark, search_date: search_date});
+    var new_record = new Record({date: date, mbg: mbg, is_eat: is_eat, remark: remark});
     new_record.save(function(err, data) {
         if (data) {
             res.send({status: 1})
@@ -34,13 +33,35 @@ app.post('/add', function(req, res) {
     })
 });
 app.post('/list', function(req, res) {
-    var {search_date} = req.body;
-    if (search_date == '') {
+    var {start_date, end_date} = req.body;
+
+
+    if (start_date == '' && end_date == '') {
         Record.find().sort({date: -1}).exec(function(err, data) {
             res.send({status: 1, data: data});
         })
-    } else {
-        Record.find({search_date: search_date}).sort({date: -1}).exec(function(err, data) {
+    } else if (start_date == ''){
+        end_date += ' 23:59';
+        Record.find({date: {"$lte": end_date}}).sort({date: -1}).exec(function(err, data) {
+            if (data) {
+                res.send({status: 1, data: data});
+            } else {
+                res.send({status: 0, err_info: '数据库异常'})
+            }
+        })
+    }else if(end_date == ''){
+        start_date += ' 00:00';
+        Record.find({date: {"$gte": start_date}}).sort({date: -1}).exec(function(err, data) {
+            if (data) {
+                res.send({status: 1, data: data});
+            } else {
+                res.send({status: 0, err_info: '数据库异常'})
+            }
+        })
+    }else{
+        start_date += ' 00:00';
+        end_date += ' 23:59';
+        Record.find({date: {"$gte": start_date, "$lte": end_date}}).sort({date: -1}).exec(function(err, data) {
             if (data) {
                 res.send({status: 1, data: data});
             } else {
@@ -48,7 +69,16 @@ app.post('/list', function(req, res) {
             }
         })
     }
-})
+});
+app.post('/dele', function(req, res) {
+    var {record_id} = req.body;
+    Record.remove({record_id: record_id}).exec(function(err, data){
+        if(err){
+            return res.send({status: 0, err_info: '数据库异常'})
+        }
+        res.send({status: 1})
+    })
+});
 
 //启动服务，开始监听端口
 app.listen(app.get('port'), function() {

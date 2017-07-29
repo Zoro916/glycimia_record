@@ -1,11 +1,9 @@
 {
-  "name": "fast_wxtuoen",
+  "name": "glycimia_record",
   "version": "1.0.0",
   "description": "copywrite by zoro 2017-2018",
   "main": "app.js",
   "scripts": {
-    "lint": "eslint src",
-    "test": "make test",
     "start": "npm run dev:local",
     "build": "cross-env NODE_ENV=production node build/webpack.release.js --uglify --deploy=online",
     "dev:local": "cross-env NODE_ENV=development node build/webpack.dev.js --hot"

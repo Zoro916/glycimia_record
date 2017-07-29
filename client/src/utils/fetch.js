@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 
 import { hashHistory } from 'react-router';
 //本地测试地址
-// const URL = "http://192.168.0.109:5001/";
+// const URL = "http://127.0.0.1:5001/";
 //现网
 const URL = "http://112.74.40.94:9090/";
 function transformData(data) {

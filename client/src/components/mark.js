@@ -103,9 +103,11 @@ export default class Mark extends Component {
                         </Item>
                     </List>
                 </div>
+                <div>
                 <WingBlank size="sm" style={{marginTop: '60px'}}>
                     <Button type="primary" onClick={this.submit.bind(this)}>提交</Button>
                 </WingBlank>
+                </div>
             </div>
         )
     }
